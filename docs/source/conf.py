@@ -33,7 +33,7 @@ master_doc = 'index'
 
 # General information about the project.
 project = u'semlix'
-copyright = u'2007-2012 Matt Chaput, 2024 Alberto Ferrer'
+copyright = u'2007-2012 Matt Chaput, 2024-2025 Alberto Ferrer'
 
 # The version info for the project you're documenting, acts as replacement for
 # |version| and |release|, also used in various other places throughout the
