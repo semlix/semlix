@@ -5,8 +5,8 @@
 from __future__ import print_function, with_statement
 import sys
 
-from whoosh import index, query
-from whoosh.compat import u
+from semlix import index, query
+from semlix.compat import u
 
 
 if len(sys.argv) < 2:

@@ -2,7 +2,7 @@
 ``columns`` module
 =====================
 
-.. automodule:: whoosh.columns
+.. automodule:: semlix.columns
 
 
 Base classes

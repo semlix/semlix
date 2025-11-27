@@ -2,9 +2,9 @@
 Quick start
 ===========
 
-Whoosh is a library of classes and functions for indexing text and then searching the index.
+semlix is a library of classes and functions for indexing text and then searching the index.
 It allows you to develop custom search engines for your content. For example, if you were
-creating blogging software, you could use Whoosh to add a search function to allow users to
+creating blogging software, you could use semlix to add a search function to allow users to
 search blog entries.
 
 
@@ -13,8 +13,8 @@ A quick introduction
 
 ::
 
-    >>> from whoosh.index import create_in
-    >>> from whoosh.fields import *
+    >>> from semlix.index import create_in
+    >>> from semlix.fields import *
     >>> schema = Schema(title=TEXT(stored=True), path=ID(stored=True), content=TEXT)
     >>> ix = create_in("indexdir", schema)
     >>> writer = ix.writer()
@@ -23,7 +23,7 @@ A quick introduction
     >>> writer.add_document(title=u"Second document", path=u"/b",
     ...                     content=u"The second one is even more interesting!")
     >>> writer.commit()
-    >>> from whoosh.qparser import QueryParser
+    >>> from semlix.qparser import QueryParser
     >>> with ix.searcher() as searcher:
     ...     query = QueryParser("content", ix.schema).parse("first")
     ...     results = searcher.search(query)
@@ -35,7 +35,7 @@ A quick introduction
 The ``Index`` and ``Schema`` objects
 ====================================
 
-To begin using Whoosh, you need an *index object*. The first time you create
+To begin using semlix, you need an *index object*. The first time you create
 an index, you must define the index's *schema*. The schema lists the *fields*
 in the index. A field is a piece of information for each document in the index,
 such as its title or text content. A field can be *indexed* (meaning it can
@@ -44,7 +44,7 @@ with the results; this is useful for fields such as the title).
 
 This schema has two fields, "title" and "content"::
 
-    from whoosh.fields import Schema, TEXT
+    from semlix.fields import Schema, TEXT
 
     schema = Schema(title=TEXT, content=TEXT)
 
@@ -53,47 +53,47 @@ schema is pickled and stored with the index.
 
 When you create the ``Schema`` object, you use keyword arguments to map field names
 to field types. The list of fields and their types defines what you are indexing
-and what's searchable. Whoosh comes with some very useful predefined field
+and what's searchable. semlix comes with some very useful predefined field
 types, and you can easily create your own.
 
-:class:`whoosh.fields.ID`
+:class:`semlix.fields.ID`
     This type simply indexes (and optionally stores) the entire value of the
     field as a single unit (that is, it doesn't break it up into individual
     words). This is useful for fields such as a file path, URL, date, category,
     etc.
 
-:class:`whoosh.fields.STORED`
+:class:`semlix.fields.STORED`
     This field is stored with the document, but not indexed. This field type is
     not indexed and not searchable. This is useful for document information you
     want to display to the user in the search results.
 
-:class:`whoosh.fields.KEYWORD`
+:class:`semlix.fields.KEYWORD`
     This type is designed for space- or comma-separated keywords. This type is
     indexed and searchable (and optionally stored). To save space, it does not
     support phrase searching.
 
-:class:`whoosh.fields.TEXT`
+:class:`semlix.fields.TEXT`
     This type is for body text. It indexes (and optionally stores) the text and
     stores term positions to allow phrase searching.
 
-:class:`whoosh.fields.NUMERIC`
+:class:`semlix.fields.NUMERIC`
     This type is for numbers. You can store integers or floating point numbers.
 
-:class:`whoosh.fields.BOOLEAN`
+:class:`semlix.fields.BOOLEAN`
     This type is for boolean (true/false) values.
 
-:class:`whoosh.fields.DATETIME`
+:class:`semlix.fields.DATETIME`
     This type is for ``datetime`` objects. See :doc:`dates` for more
     information.
 
-:class:`whoosh.fields.NGRAM` and :class:`whoosh.fields.NGRAMWORDS`
+:class:`semlix.fields.NGRAM` and :class:`semlix.fields.NGRAMWORDS`
     These types break the field text or individual terms into N-grams.
     See :doc:`ngrams` for more information.
 
 (As a shortcut, if you don't need to pass any arguments to the field type, you
-can just give the class name and Whoosh will instantiate the object for you.) ::
+can just give the class name and semlix will instantiate the object for you.) ::
 
-    from whoosh.fields import Schema, STORED, ID, KEYWORD, TEXT
+    from semlix.fields import Schema, STORED, ID, KEYWORD, TEXT
 
     schema = Schema(title=TEXT(stored=True), content=TEXT,
                     path=ID(stored=True), tags=KEYWORD, icon=STORED)
@@ -104,7 +104,7 @@ Once you have the schema, you can create an index using the ``create_in``
 function::
 
     import os.path
-    from whoosh.index import create_in
+    from semlix.index import create_in
 
     if not os.path.exists("index"):
         os.mkdir("index")
@@ -118,7 +118,7 @@ in a directory.)
 After you've created an index, you can open it using the ``open_dir``
 convenience function::
 
-    from whoosh.index import open_dir
+    from semlix.index import open_dir
 
     ix = open_dir("index")
 
@@ -142,7 +142,7 @@ method accepts keyword arguments where the field name is mapped to a value::
 
 Two important notes:
 
-* You don't have to fill in a value for every field. Whoosh doesn't care if you
+* You don't have to fill in a value for every field. semlix doesn't care if you
   leave out a field from a document.
 
 * Indexed text fields must be passed a unicode value. Fields that are stored
@@ -194,7 +194,7 @@ For example, this query would match documents that contain both "apple" and
 
     # Construct query objects directly
 
-    from whoosh.query import *
+    from semlix.query import *
     myquery = And([Term("content", u"apple"), Term("content", "bear")])
 
 To parse a query string, you can use the default query parser in the ``qparser``
@@ -204,7 +204,7 @@ argument is a schema to use to understand how to parse the fields::
 
     # Parse a query string
 
-    from whoosh.qparser import QueryParser
+    from semlix.qparser import QueryParser
     parser = QueryParser("content", ix.schema)
     myquery = parser.parse(querystring)
 
@@ -233,7 +233,7 @@ the document for the document to match)::
     >>> print(parser.parse(u"rend*"))
     Prefix("content", "rend")
 
-Whoosh includes extra features for dealing with search results, such as
+semlix includes extra features for dealing with search results, such as
 
 * Sorting results by the value of an indexed field, instead of by relelvance.
 * Highlighting the search terms in excerpts from the original documents.

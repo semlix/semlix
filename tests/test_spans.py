@@ -1,11 +1,11 @@
 from __future__ import with_statement
 
-from whoosh import analysis, fields, formats
-from whoosh.compat import u, xrange, permutations
-from whoosh.filedb.filestore import RamStorage
-from whoosh.query import spans
-from whoosh.query import And, Or, Term, Phrase
-from whoosh.util.testing import TempIndex
+from semlix import analysis, fields, formats
+from semlix.compat import u, xrange, permutations
+from semlix.filedb.filestore import RamStorage
+from semlix.query import spans
+from semlix.query import And, Or, Term, Phrase
+from semlix.util.testing import TempIndex
 
 
 domain = ("alfa", "bravo", "bravo", "charlie", "delta", "echo")
@@ -206,12 +206,12 @@ def test_span_near_tree():
     st = RamStorage()
     ix = st.create_index(schema)
     w = ix.writer()
-    w.add_document(text=u("The Lucene library is by Doug Cutting and Whoosh " +
-                          "was made by Matt Chaput"))
+    w.add_document(text=u("The Lucene library is by Doug Cutting and semlix " +
+                          "was made by Alberto Fernandez"))
     w.commit()
 
     nq1 = spans.SpanNear(Term("text", "lucene"), Term("text", "doug"), slop=5)
-    nq2 = spans.SpanNear(nq1, Term("text", "whoosh"), slop=4)
+    nq2 = spans.SpanNear(nq1, Term("text", "semlix"), slop=4)
 
     with ix.searcher() as s:
         m = nq2.matcher(s)

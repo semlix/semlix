@@ -2,7 +2,7 @@
 ``filedb.filestore`` module
 ===========================
 
-.. automodule:: whoosh.filedb.filestore
+.. automodule:: semlix.filedb.filestore
 
 Base class
 ==========

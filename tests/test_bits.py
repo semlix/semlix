@@ -1,5 +1,5 @@
-from whoosh.filedb.filestore import RamStorage
-from whoosh.idsets import BitSet, OnDiskBitSet, SortedIntSet
+from semlix.filedb.filestore import RamStorage
+from semlix.idsets import BitSet, OnDiskBitSet, SortedIntSet
 
 
 def test_bit_basics(c=BitSet):

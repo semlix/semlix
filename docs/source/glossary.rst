@@ -10,7 +10,7 @@ Glossary
         The process of breaking the text of a field into individual *terms*
         to be indexed. This consists of tokenizing the text into terms, and then optionally
         filtering the tokenized terms (for example, lowercasing and removing *stop words*).
-        Whoosh includes several different analyzers.
+        semlix includes several different analyzers.
 
     Corpus
         The set of documents you are indexing.
@@ -21,7 +21,7 @@ Glossary
         anything -- articles in a content management system, blog posts in a blogging
         system, chunks of a very large file, rows returned from an SQL query, individual
         email messages from a mailbox file, or whatever. When you get search results
-        from Whoosh, the results are a list of documents, whatever "documents" means in
+        from semlix, the results are a list of documents, whatever "documents" means in
         your search engine.
 
     Fields
@@ -33,7 +33,7 @@ Glossary
 
     Forward index
         A table listing every document and the words that appear in the document.
-        Whoosh lets you store *term vectors* that are a kind of forward index.
+        semlix lets you store *term vectors* that are a kind of forward index.
 
     Indexing
         The process of examining documents in the corpus and adding them to the
@@ -44,7 +44,7 @@ Glossary
         of documents in which that word appears, along with some optional information
         (such as the number of times the word appears in that document). These items
         in the list, containing a document number and any extra information, are
-        called *postings*. In Whoosh the information stored in postings is customizable
+        called *postings*. In semlix the information stored in postings is customizable
         for each *field*.
 
     Reverse index
@@ -54,7 +54,7 @@ Glossary
         it appears, etc.) but that's how it basically works.
 
     Schema
-        Whoosh requires that you specify the *fields* of the index before you begin
+        semlix requires that you specify the *fields* of the index before you begin
         indexing. The Schema associates field names with metadata about the field, such
         as the format of the *postings* and whether the contents of the field are stored
         in the index.

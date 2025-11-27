@@ -4,10 +4,10 @@ from __future__ import with_statement
 
 import pytest
 
-from whoosh import analysis, fields, qparser
-from whoosh.compat import b, u, unichr
-from whoosh.compat import dumps
-from whoosh.filedb.filestore import RamStorage
+from semlix import analysis, fields, qparser
+from semlix.compat import b, u, unichr
+from semlix.compat import dumps
+from semlix.filedb.filestore import RamStorage
 
 
 def test_regextokenizer():
@@ -218,7 +218,7 @@ def test_shingles():
 
 
 def test_unicode_blocks():
-    from whoosh.support.unicode import blocks, blockname, blocknum
+    from semlix.support.unicode import blocks, blockname, blocknum
 
     assert blockname(u('a')) == 'Basic Latin'
     assert blockname(unichr(0x0b80)) == 'Tamil'
@@ -231,7 +231,7 @@ def test_unicode_blocks():
 
 
 def test_double_metaphone():
-    from whoosh.lang.dmetaphone import double_metaphone
+    from semlix.lang.dmetaphone import double_metaphone
 
     names = {'maurice': ('MRS', None),
              'aubrey': ('APR', None),
@@ -307,7 +307,7 @@ def test_delimited_attribute():
 
 
 def test_porter2():
-    from whoosh.lang.porter2 import stem
+    from semlix.lang.porter2 import stem
 
     plurals = ['caresses', 'flies', 'dies', 'mules', 'denied',
                'died', 'agreed', 'owned', 'humbled', 'sized',
@@ -380,7 +380,7 @@ def test_name_field():
 
 
 def test_start_pos():
-    from whoosh import formats
+    from semlix import formats
     ana = analysis.RegexTokenizer(r"\S+") | analysis.LowercaseFilter()
     kw = {"positions": True}
     tks = formats.tokens(u("alfa bravo charlie delta"), ana, kw)
@@ -457,7 +457,7 @@ def test_la_pickleability():
 
 
 def test_charset_pickeability():
-    from whoosh.support import charset
+    from semlix.support import charset
     charmap = charset.charset_table_to_dict(charset.default_charset)
     ana = analysis.StandardAnalyzer() | analysis.CharsetFilter(charmap)
     _ = dumps(ana, -1)

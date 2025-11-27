@@ -3,10 +3,10 @@ import random, time, threading
 
 import pytest
 
-from whoosh import analysis, fields, query, writing
-from whoosh.compat import b, u, xrange, text_type
-from whoosh.filedb.filestore import RamStorage
-from whoosh.util.testing import TempIndex
+from semlix import analysis, fields, query, writing
+from semlix.compat import b, u, xrange, text_type
+from semlix.filedb.filestore import RamStorage
+from semlix.util.testing import TempIndex
 
 
 def test_no_stored():
@@ -252,7 +252,7 @@ def test_cancel_delete():
 
 
 def test_delete_nonexistant():
-    from whoosh.writing import IndexingError
+    from semlix.writing import IndexingError
 
     schema = fields.Schema(id=fields.ID(stored=True))
     # Single segment

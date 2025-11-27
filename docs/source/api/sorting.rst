@@ -2,7 +2,7 @@
 ``sorting`` module
 ==================
 
-.. automodule:: whoosh.sorting
+.. automodule:: semlix.sorting
 
 
 Base types

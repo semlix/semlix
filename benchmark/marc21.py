@@ -1,9 +1,9 @@
 from __future__ import with_statement, print_function
 import fnmatch, logging, os.path, re
 
-from whoosh import analysis, fields, index, qparser, query, scoring
-from whoosh.compat import xrange
-from whoosh.util import now
+from semlix import analysis, fields, index, qparser, query, scoring
+from semlix.compat import xrange
+from semlix.util import now
 
 
 log = logging.getLogger(__name__)

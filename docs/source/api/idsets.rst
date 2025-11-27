@@ -2,7 +2,7 @@
 ``support.bitvector`` module
 ============================
 
-.. automodule:: whoosh.idsets
+.. automodule:: semlix.idsets
 
 
 Base classes

@@ -2,7 +2,7 @@
 ``collectors`` module
 =====================
 
-.. automodule:: whoosh.collectors
+.. automodule:: semlix.collectors
 
 
 Base classes

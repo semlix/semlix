@@ -2,7 +2,7 @@
 ``formats`` module
 ==================
 
-.. automodule:: whoosh.formats
+.. automodule:: semlix.formats
 
 Base class
 ==========

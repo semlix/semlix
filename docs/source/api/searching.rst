@@ -2,7 +2,7 @@
 ``searching`` module
 ====================
 
-.. automodule:: whoosh.searching
+.. automodule:: semlix.searching
 
 
 Searching classes

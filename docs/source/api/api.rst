@@ -1,5 +1,5 @@
 ==========
-Whoosh API
+semlix API
 ==========
 
 .. toctree::

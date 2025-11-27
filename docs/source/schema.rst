@@ -25,13 +25,13 @@ emails without attachments, you would omit the attachments field.
 Built-in field types
 ====================
 
-Whoosh provides some useful predefined field types:
+semlix provides some useful predefined field types:
 
-:class:`whoosh.fields.TEXT`
+:class:`semlix.fields.TEXT`
     This type is for body text. It indexes (and optionally stores) the text and
     stores term positions to allow phrase searching.
 
-    ``TEXT`` fields use :class:`~whoosh.analysis.StandardAnalyzer` by default. To specify a different
+    ``TEXT`` fields use :class:`~semlix.analysis.StandardAnalyzer` by default. To specify a different
     analyzer, use the ``analyzer`` keyword argument to the constructor, e.g.
     ``TEXT(analyzer=analysis.StemmingAnalyzer())``. See :doc:`analysis`.
 
@@ -47,7 +47,7 @@ Whoosh provides some useful predefined field types:
     circumstances it can be useful (see :doc:`highlight`). Use
     ``TEXT(stored=True)`` to specify that the text should be stored in the index.
 
-:class:`whoosh.fields.KEYWORD`
+:class:`semlix.fields.KEYWORD`
     This field type is designed for space- or comma-separated keywords. This
     type is indexed and searchable (and optionally stored). To save space, it
     does not support phrase searching.
@@ -61,7 +61,7 @@ Whoosh provides some useful predefined field types:
 
     If your users will use the keyword field for searching, use ``scorable=True``.
 
-:class:`whoosh.fields.ID`
+:class:`semlix.fields.ID`
     The ``ID`` field type simply indexes (and optionally stores) the entire value of
     the field as a single unit (that is, it doesn't break it up into individual
     terms). This type of field does not store frequency information, so it's
@@ -76,23 +76,23 @@ Whoosh provides some useful predefined field types:
     search results. For example, you would want to store the value of a url
     field so you could provide links to the original in your search results.
 
-:class:`whoosh.fields.STORED`
+:class:`semlix.fields.STORED`
     This field is stored with the document, but not indexed and not searchable.
     This is useful for document information you want to display to the user in
     the search results, but don't need to be able to search for.
 
-:class:`whoosh.fields.NUMERIC`
+:class:`semlix.fields.NUMERIC`
     This field stores int, long, or floating point numbers in a compact,
     sortable format.
 
-:class:`whoosh.fields.DATETIME`
+:class:`semlix.fields.DATETIME`
     This field stores datetime objects in a compact, sortable format.
 
-:class:`whoosh.fields.BOOLEAN`
+:class:`semlix.fields.BOOLEAN`
     This simple filed indexes boolean values and allows users to search for
     ``yes``, ``no``, ``true``, ``false``, ``1``, ``0``, ``t`` or ``f``.
 
-:class:`whoosh.fields.NGRAM`
+:class:`semlix.fields.NGRAM`
     TBD.
 
 Expert users can create their own field types.
@@ -103,8 +103,8 @@ Creating a Schema
 
 To create a schema::
 
-    from whoosh.fields import Schema, TEXT, KEYWORD, ID, STORED
-    from whoosh.analysis import StemmingAnalyzer
+    from semlix.fields import Schema, TEXT, KEYWORD, ID, STORED
+    from semlix.analysis import StemmingAnalyzer
 
     schema = Schema(from_addr=ID(stored=True),
                     to_addr=ID(stored=True),
@@ -114,12 +114,12 @@ To create a schema::
 
 If you aren't specifying any constructor keyword arguments to one of the
 predefined fields, you can leave off the brackets (e.g. ``fieldname=TEXT`` instead
-of ``fieldname=TEXT()``). Whoosh will instantiate the class for you.
+of ``fieldname=TEXT()``). semlix will instantiate the class for you.
 
 Alternatively you can create a schema declaratively using the ``SchemaClass``
 base class::
 
-    from whoosh.fields import SchemaClass, TEXT, KEYWORD, ID, STORED
+    from semlix.fields import SchemaClass, TEXT, KEYWORD, ID, STORED
 
     class MySchema(SchemaClass):
         path = ID(stored=True)
@@ -127,9 +127,9 @@ base class::
         content = TEXT
         tags = KEYWORD
 
-You can pass a declarative class to :func:`~whoosh.index.create_in` or
-:meth:`~whoosh.store.Storage.create_index()` instead of a
-:class:`~whoosh.fields.Schema` instance.
+You can pass a declarative class to :func:`~semlix.index.create_in` or
+:meth:`~semlix.store.Storage.create_index()` instead of a
+:class:`~semlix.fields.Schema` instance.
 
 
 Modifying the schema after indexing
@@ -173,7 +173,7 @@ the same name as a deleted field without optimizing the index in between::
     # Don't do this!!!
     writer.add_field("path", fields.KEYWORD)
 
-(A future version of Whoosh may automatically prevent this error.)
+(A future version of semlix may automatically prevent this error.)
 
 
 Dynamic fields
@@ -264,7 +264,7 @@ stored       bool            If True, the value of this field is stored
 unique       bool            If True, the value of this field may be used to
                              replace documents with the same value when the user
                              calls
-                             :meth:`~whoosh.writing.IndexWriter.document_update`
+                             :meth:`~semlix.writing.IndexWriter.document_update`
                              on an ``IndexWriter``.
 ============ =============== ======================================================
 
@@ -307,7 +307,7 @@ The indexing code passes the unicode string for a field to the field's ``Format`
 object. The ``Format`` object calls its analyzer (see text analysis) to break the
 string into tokens, then encodes information about each token.
 
-Whoosh ships with the following pre-defined formats.
+semlix ships with the following pre-defined formats.
 
 =============== ================================================================
 Class name      Description
@@ -328,7 +328,7 @@ uses the ``Frequency`` format. The ``TEXT`` type uses the ``Positions`` format i
 instantiated with ``phrase=True`` (the default), or ``Frequency`` if ``phrase=False``.
 
 In addition, the following formats are implemented for the possible convenience
-of expert users, but are not currently used in Whoosh:
+of expert users, but are not currently used in semlix:
 
 ================= ================================================================
 Class name        Description
@@ -369,7 +369,7 @@ Doc        Postings
 
 If you set ``FieldType.vector`` to a ``Format`` object, the indexing code will use the
 ``Format`` object to store information about the terms in each document. Currently
-by default Whoosh does not make use of term vectors at all, but they are
+by default semlix does not make use of term vectors at all, but they are
 available to expert users who want to implement their own field types.
 
 

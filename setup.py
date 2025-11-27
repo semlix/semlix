@@ -10,7 +10,7 @@ except ImportError:
     pytest = None
 
 sys.path.insert(0, os.path.abspath("src"))
-from whoosh import versionstring
+from semlix import versionstring
 
 
 class PyTest(TestCommand):
@@ -27,24 +27,37 @@ class PyTest(TestCommand):
 
 if __name__ == "__main__":
     setup(
-        name="Whoosh",
+        name="semlix",
         version=versionstring(),
         package_dir={'': 'src'},
         packages=find_packages("src"),
 
-        author="Matt Chaput",
-        author_email="matt@whoosh.ca",
+        author="Alberto Fernandez",
+        author_email="albertof@barrahome.org",
 
-        description="Fast, pure-Python full text indexing, search, and spell checking library.",
+        description="Fast, pure-Python full text indexing, search, and spell checking library with semantic search capabilities.",
         long_description=open("README.md").read(),
 
         license="Two-clause BSD license",
-        keywords="index search text spell",
-        url="http://bitbucket.org/mchaput/whoosh",
+        keywords="index search text spell semantic",
+        url="https://github.com/semlix/semlix",
 
         zip_safe=True,
         install_requires=['cached-property'],
         tests_require=['pytest'],
+        extras_require={
+            'semantic': [
+                'numpy',  # Required for semantic search
+            ],
+            'semantic-full': [
+                'numpy',
+                'sentence-transformers',  # For SentenceTransformerProvider
+                'openai',  # For OpenAIProvider
+                'cohere',  # For CohereProvider
+                'huggingface_hub',  # For HuggingFaceInferenceProvider
+                'faiss-cpu',  # For FaissVectorStore (or faiss-gpu for GPU)
+            ],
+        },
         cmdclass={'test': PyTest},
 
         classifiers=[

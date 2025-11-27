@@ -1,7 +1,7 @@
 import os.path, gzip
 
-from whoosh import analysis, fields
-from whoosh.support.bench import Bench, Spec
+from semlix import analysis, fields
+from semlix.support.bench import Bench, Spec
 
 
 class VulgarTongue(Spec):
@@ -26,7 +26,7 @@ class VulgarTongue(Spec):
         if head:
             yield {"head": head, "body": head + body}
 
-    def whoosh_schema(self):
+    def semlix_schema(self):
         ana = analysis.StemmingAnalyzer()
         #ana = analysis.StandardAnalyzer()
         schema = fields.Schema(head=fields.ID(stored=True),

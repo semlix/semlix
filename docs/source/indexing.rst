@@ -1,3 +1,4 @@
+
 ======================
 How to index documents
 ======================
@@ -8,7 +9,7 @@ Creating an Index object
 To create an index in a directory, use ``index.create_in``::
 
     import os, os.path
-    from whoosh import index
+    from semlix import index
 
     if not os.path.exists("indexdir"):
         os.mkdir("indexdir")
@@ -17,13 +18,13 @@ To create an index in a directory, use ``index.create_in``::
 
 To open an existing index in a directory, use ``index.open_dir``::
 
-    import whoosh.index as index
+    import semlix.index as index
 
     ix = index.open_dir("indexdir")
 
 These are convenience methods for::
 
-    from whoosh.filedb.filestore import FileStorage
+    from semlix.filedb.filestore import FileStorage
     storage = FileStorage("indexdir")
 
     # Create an index
@@ -80,10 +81,10 @@ a time can have a writer open.
 
     Because opening a writer locks the index for writing, in a multi-threaded
     or multi-process environment your code needs to be aware that opening a
-    writer may raise an exception (``whoosh.store.LockError``) if a writer is
-    already open. Whoosh includes a couple of example implementations
-    (:class:`whoosh.writing.AsyncWriter` and
-    :class:`whoosh.writing.BufferedWriter`) of ways to work around the write
+    writer may raise an exception (``semlix.store.LockError``) if a writer is
+    already open. semlix includes a couple of example implementations
+    (:class:`semlix.writing.AsyncWriter` and
+    :class:`semlix.writing.BufferedWriter`) of ways to work around the write
     lock.
 
 .. note::
@@ -107,13 +108,13 @@ where the field name is mapped to a value::
                         path=u"/c", tags=u"short", icon=u"/icons/book.png")
     writer.commit()
 
-You don't have to fill in a value for every field. Whoosh doesn't care if you
+You don't have to fill in a value for every field. semlix doesn't care if you
 leave out a field from a document.
 
 Indexed fields must be passed a unicode value. Fields that are stored but not
 indexed (i.e. the ``STORED`` field type) can be passed any pickle-able object.
 
-Whoosh will happily allow you to add documents with identical values, which can
+semlix will happily allow you to add documents with identical values, which can
 be useful or annoying depending on what you're using the library for::
 
     writer.add_document(path=u"/a", title=u"A", content=u"Hello there")
@@ -163,22 +164,22 @@ to call either ``commit()`` or ``cancel()`` when you're done with a writer objec
 Merging segments
 ================
 
-A Whoosh ``filedb`` index is really a container for one or more "sub-indexes"
+A semlix ``filedb`` index is really a container for one or more "sub-indexes"
 called segments. When you add documents to an index, instead of integrating the
 new documents with the existing documents (which could potentially be very
-expensive, since it involves resorting all the indexed terms on disk), Whoosh
+expensive, since it involves resorting all the indexed terms on disk), semlix
 creates a new segment next to the existing segment. Then when you search the
-index, Whoosh searches both segments individually and merges the results so the
+index, semlix searches both segments individually and merges the results so the
 segments appear to be one unified index. (This smart design is copied from
 Lucene.)
 
 So, having a few segments is more efficient than rewriting the entire index
 every time you add some documents. But searching multiple segments does slow
 down searching somewhat, and the more segments you have, the slower it gets. So
-Whoosh has an algorithm that runs when you call ``commit()`` that looks for small
+semlix has an algorithm that runs when you call ``commit()`` that looks for small
 segments it can merge together to make fewer, bigger segments.
 
-To prevent Whoosh from merging segments during a commit, use the ``merge``
+To prevent semlix from merging segments during a commit, use the ``merge``
 keyword argument::
 
     writer.commit(merge=False)
@@ -189,7 +190,7 @@ use the ``optimize`` keyword argument::
     writer.commit(optimize=True)
 
 Since optimizing rewrites all the information in the index, it can be slow on
-a large index. It's generally better to rely on Whoosh's merging algorithm than
+a large index. It's generally better to rely on semlix's merging algorithm than
 to optimize all the time.
 
 (The ``Index`` object also has an ``optimize()`` method that lets you optimize the
@@ -199,7 +200,7 @@ index (merge all the segments together). It simply creates a writer and calls
 For more control over segment merging, you can write your own merge policy
 function and use it as an argument to the ``commit()`` method. See the
 implementation of the ``NO_MERGE``, ``MERGE_SMALL``, and ``OPTIMIZE`` functions
-in the ``whoosh.writing`` module.
+in the ``semlix.writing`` module.
 
 
 Deleting documents
@@ -253,10 +254,10 @@ using one of the ``delete_*`` methods on ``Index`` or ``IndexWriter``, then use
 ``IndexWriter.update_document`` to do this in one step.
 
 For ``update_document`` to work, you must have marked at least one of the fields
-in the schema as "unique". Whoosh will then use the contents of the "unique"
+in the schema as "unique". semlix will then use the contents of the "unique"
 field(s) to search for documents to delete::
 
-    from whoosh.fields import Schema, ID, TEXT
+    from semlix.fields import Schema, ID, TEXT
 
     schema = Schema(path = ID(unique=True), content=TEXT)
 
@@ -278,7 +279,7 @@ If no existing document matches the unique fields of the document you're
 updating, ``update_document`` acts just like ``add_document``.
 
 "Unique" fields and ``update_document`` are simply convenient shortcuts for deleting
-and adding. Whoosh has no inherent concept of a unique identifier, and in no way
+and adding. semlix has no inherent concept of a unique identifier, and in no way
 enforces uniqueness when you use ``add_document``.
 
 
@@ -293,8 +294,8 @@ add/update documents according to user actions).
 Indexing everything from scratch is pretty easy. Here's a simple example::
 
     import os.path
-    from whoosh import index
-    from whoosh.fields import Schema, ID, TEXT
+    from semlix import index
+    from semlix.fields import Schema, ID, TEXT
 
     def clean_index(dirname):
       # Always create the index from scratch
@@ -418,7 +419,7 @@ Clearing the index
 In some cases you may want to re-index from scratch. To clear the index without
 disrupting any existing readers::
 
-    from whoosh import writing
+    from semlix import writing
 
     with myindex.writer() as mywriter:
         # You can optionally add documents to the writer here

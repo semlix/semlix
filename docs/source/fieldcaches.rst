@@ -20,7 +20,7 @@ Customizing cache behaviour
 
 (The following API examples refer to the default ``filedb`` backend.)
 
-*By default*, Whoosh saves field caches to disk. To prevent a reader or searcher
+*By default*, semlix saves field caches to disk. To prevent a reader or searcher
 from writing out field caches, do this before you start using it::
 
     searcher.set_caching_policy(save=False)
@@ -29,7 +29,7 @@ By default, if caches are written to disk they are saved in the index directory.
 To tell a reader or searcher to save cache files to a different location, create
 a storage object and pass it to the ``storage`` keyword argument::
 
-    from whoosh.filedb.filestore import FileStorage
+    from semlix.filedb.filestore import FileStorage
 
     mystorage = FileStorage("path/to/cachedir")
     reader.set_caching_policy(storage=mystorage)
@@ -39,7 +39,7 @@ Creating a custom caching policy
 ================================
 
 Expert users who want to implement a custom caching policy (for example, to add
-cache expiration) should subclass :class:`whoosh.filedb.fieldcache.FieldCachingPolicy`.
+cache expiration) should subclass :class:`semlix.filedb.fieldcache.FieldCachingPolicy`.
 Then you can pass an instance of your policy object to the ``set_caching_policy``
 method::
 

@@ -2,7 +2,7 @@
 ``scoring`` module
 ==================
 
-.. automodule:: whoosh.scoring
+.. automodule:: semlix.scoring
 
 
 Base classes

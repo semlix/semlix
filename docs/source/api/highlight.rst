@@ -2,7 +2,7 @@
 ``highlight`` module
 ====================
 
-.. automodule:: whoosh.highlight
+.. automodule:: semlix.highlight
 
 See :doc:`how to highlight terms in search results </highlight>`.
 

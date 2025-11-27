@@ -5,15 +5,15 @@ Indexing and searching document hierarchies
 Overview
 ========
 
-Whoosh's full-text index is essentially a flat database of documents. However,
-Whoosh supports two techniques for simulating the indexing and querying of
+semlix's full-text index is essentially a flat database of documents. However,
+semlix supports two techniques for simulating the indexing and querying of
 hierarchical documents, that is, sets of documents that form a parent-child
 hierarchy, such as "Chapter - Section - Paragraph" or
 "Module - Class - Method".
 
 You can specify parent-child relationships *at indexing time*, by grouping
 documents in the same hierarchy, and then use the
-:class:`whoosh.query.NestedParent` and/or :class:`whoosh.query.NestedChildren`
+:class:`semlix.query.NestedParent` and/or :class:`semlix.query.NestedChildren`
 to find parents based on their children or vice-versa.
 
 Alternatively, you can use *query time joins*, essentially like external key
@@ -80,7 +80,7 @@ find parents based on children or vice-versa.
 NestedParent query
 ------------------
 
-The :class:`whoosh.query.NestedParent` query type lets you specify a query for
+The :class:`semlix.query.NestedParent` query type lets you specify a query for
 child documents, but have the query return an "ancestor" document from higher
 in the hierarchy::
 
@@ -124,7 +124,7 @@ no matter how many children match). This parent lookup is very efficient::
 NestedChildren query
 --------------------
 
-The opposite of ``NestedParent`` is :class:`whoosh.query.NestedChildren`. This
+The opposite of ``NestedParent`` is :class:`semlix.query.NestedChildren`. This
 query lets you match parents but return their children. This is useful, for
 example, to search for an album title and return the songs in the album::
 
@@ -176,7 +176,7 @@ method with a ``NestedParent`` query::
 Using query-time joins
 ======================
 
-A second technique for simulating hierarchical documents in Whoosh involves
+A second technique for simulating hierarchical documents in semlix involves
 using a stored field on each document to point to its parent, and then using
 the value of that field at query time to find parents and children.
 
@@ -233,6 +233,6 @@ doesn't support finding different parent levels as easily. It is also slower
 than index-time nesting (potentially much slower), since you must perform
 additional searches for each found document.
 
-Future versions of Whoosh may include "join" queries to make this process more
+Future versions of semlix may include "join" queries to make this process more
 efficient (or at least more automatic).
 

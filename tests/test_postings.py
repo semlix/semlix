@@ -1,12 +1,12 @@
 from __future__ import with_statement
 
-from whoosh import analysis, fields
-from whoosh.compat import u
-from whoosh.codec import default_codec
-from whoosh.formats import Existence, Frequency
-from whoosh.formats import Positions, PositionBoosts
-from whoosh.formats import Characters, CharacterBoosts
-from whoosh.util.testing import TempStorage
+from semlix import analysis, fields
+from semlix.compat import u
+from semlix.codec import default_codec
+from semlix.formats import Existence, Frequency
+from semlix.formats import Positions, PositionBoosts
+from semlix.formats import Characters, CharacterBoosts
+from semlix.util.testing import TempStorage
 
 
 def _roundtrip(content, format_, astype, ana=None):

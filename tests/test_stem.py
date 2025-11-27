@@ -1,7 +1,7 @@
-from whoosh.lang.snowball.english import EnglishStemmer
-from whoosh.lang.snowball.french import FrenchStemmer
-from whoosh.lang.snowball.finnish import FinnishStemmer
-from whoosh.lang.snowball.spanish import SpanishStemmer
+from semlix.lang.snowball.english import EnglishStemmer
+from semlix.lang.snowball.french import FrenchStemmer
+from semlix.lang.snowball.finnish import FinnishStemmer
+from semlix.lang.snowball.spanish import SpanishStemmer
 
 
 def test_english():

@@ -1,8 +1,8 @@
 ========================
-Whoosh 2.x release notes
+semlix 2.x release notes
 ========================
 
-Whoosh 2.7
+semlix 2.7
 ==========
 
 * Removed on-disk word graph implementation of spell checking in favor of much
@@ -18,14 +18,14 @@ Whoosh 2.7
   compatibility.
 
 
-Whoosh 2.5
+semlix 2.5
 ==========
 
-* Whoosh 2.5 will read existing indexes, but segments created by 2.5 will not
-  be readable by older versions of Whoosh.
+* semlix 2.5 will read existing indexes, but segments created by 2.5 will not
+  be readable by older versions of semlix.
 
-* As a replacement for field caches to speed up sorting, Whoosh now supports
-  adding a ``sortable=True`` keyword argument to fields. This makes Whoosh store
+* As a replacement for field caches to speed up sorting, semlix now supports
+  adding a ``sortable=True`` keyword argument to fields. This makes semlix store
   a sortable representation of the field's values in a "column" format
   (which associates a "key" value with each document). This is more robust,
   efficient, and customizable than the old behavior.
@@ -33,7 +33,7 @@ Whoosh 2.5
   sort or group search results.
 
   (You can still sort/group on fields that don't have ``sortable=True``,
-  however it will use more RAM and be slower as Whoosh caches the field values
+  however it will use more RAM and be slower as semlix caches the field values
   in memory.)
 
   Fields that use ``sortable=True`` can avoid specifying ``stored=True``. The
@@ -41,18 +41,18 @@ Whoosh 2.5
   retrieved from the column instead of from the stored fields). This may
   actually be faster for certain types of values.
 
-* Whoosh will now detect common types of OR queries and use optimized read-ahead
+* semlix will now detect common types of OR queries and use optimized read-ahead
   matchers to speed them up by several times.
 
-* Whoosh now includes pure-Python implementations of the Snowball stemmers and
+* semlix now includes pure-Python implementations of the Snowball stemmers and
   stop word lists for various languages adapted from NLTK. These are available
-  through the :class:`whoosh.analysis.LanguageAnalyzer` analyzer or through the
+  through the :class:`semlix.analysis.LanguageAnalyzer` analyzer or through the
   ``lang=`` keyword argument to the
-  :class:`~whoosh.fields.TEXT` field.
+  :class:`~semlix.fields.TEXT` field.
 
 * You can now use the
-  :meth:`whoosh.filedb.filestore.Storage.create()` and
-  :meth:`whoosh.filedb.filestore.Storage.destory()`
+  :meth:`semlix.filedb.filestore.Storage.create()` and
+  :meth:`semlix.filedb.filestore.Storage.destory()`
   methods as a consistent API to set up and tear down different types of
   storage.
 
@@ -63,12 +63,12 @@ Whoosh 2.5
 * Removed obsolete ``SpellChecker`` class.
 
 
-Whoosh 2.4
+semlix 2.4
 ==========
 
-* By default, Whoosh now assembles the individual files of a segment into a
+* By default, semlix now assembles the individual files of a segment into a
   single file when committing. This has a small performance penalty but solves
-  a problem where Whoosh can keep too many files open. Whoosh is also now
+  a problem where semlix can keep too many files open. semlix is also now
   smarter about using mmap.
 
 * Added functionality to index and search hierarchical documents. See
@@ -102,7 +102,7 @@ Whoosh 2.4
   Thomas Waldmann and Alexei Gousev for the help!
 
 
-Whoosh 2.3.2
+semlix 2.3.2
 ============
 
 * Fixes bug in BM25F scoring function, leading to increased precision in search
@@ -111,22 +111,22 @@ Whoosh 2.3.2
 * Fixes issues #203, #205, #206, #208, #209, #212.
 
 
-Whoosh 2.3.1
+semlix 2.3.1
 ============
 
 * Fixes issue #200.
 
 
-Whoosh 2.3
+semlix 2.3
 ==========
 
-* Added a :class:`whoosh.query.Regex` term query type, similar to
-  :class:`whoosh.query.Wildcard`. The parser does not allow regex term queries
-  by default. You need to add the :class:`whoosh.qparser.RegexPlugin` plugin.
+* Added a :class:`semlix.query.Regex` term query type, similar to
+  :class:`semlix.query.Wildcard`. The parser does not allow regex term queries
+  by default. You need to add the :class:`semlix.qparser.RegexPlugin` plugin.
   After you add the plugin, you can use ``r"expression"`` query syntax for
   regular expression term queries. For example, ``r"foo.*bar"``.
 
-* Added the :class:`whoosh.qparser.PseudoFieldPlugin` parser plugin. This
+* Added the :class:`semlix.qparser.PseudoFieldPlugin` parser plugin. This
   plugin lets you create "pseudo-fields" that run a transform function on
   whatever query syntax the user applies the field to. This is fairly advanced
   functionality right now; I'm trying to think of ways to make its power easier
@@ -137,10 +137,10 @@ Whoosh 2.3
   it much easier to display the "top N" results in each category, for example.
 
 * The ``groupids`` keyword argument to ``Searcher.search`` has been removed.
-  Instead you can now pass a :class:`whoosh.sorting.FacetMap` object to the
+  Instead you can now pass a :class:`semlix.sorting.FacetMap` object to the
   ``Searcher.search`` method's ``maptype`` argument to control how faceted
   documents are grouped, and/or set the ``maptype`` argument on individual
-  :class:`whoosh.sorting.FacetType`` objects to set custom grouping per facet.
+  :class:`semlix.sorting.FacetType`` objects to set custom grouping per facet.
   See :doc:`../facets` for more information.
 
 * Calling ``Searcher.documents()`` or ``Searcher.document_numbers()`` with no
@@ -164,38 +164,38 @@ Whoosh 2.3
 
 * Various other bug fixes.
 
-Whoosh 2.2
+semlix 2.2
 ==========
 
 * Fixes several bugs, including a bad bug in BM25F scoring.
 
-* Added ``allow_overlap`` option to :class:`whoosh.sorting.StoredFieldFacet`.
+* Added ``allow_overlap`` option to :class:`semlix.sorting.StoredFieldFacet`.
 
-* In :meth:`~whoosh.writing.IndexWriter.add_document`, You can now pass
+* In :meth:`~semlix.writing.IndexWriter.add_document`, You can now pass
   query-like strings for BOOLEAN and DATETIME fields (e.g ``boolfield="true"``
   and ``dtfield="20101131-16:01"``) as an alternative to actual ``bool`` or
   ``datetime`` objects. The implementation of this is incomplete: it only works
   in the default ``filedb`` backend, and if the field is stored, the stored
   value will be the string, not the parsed object.
 
-* Added :class:`whoosh.analysis.CompoundWordFilter` and
-  :class:`whoosh.analysis.TeeFilter`.
+* Added :class:`semlix.analysis.CompoundWordFilter` and
+  :class:`semlix.analysis.TeeFilter`.
 
 
-Whoosh 2.1
+semlix 2.1
 ==========
 
 This release fixes several bugs, and contains speed improvments to highlighting.
 See :doc:`/highlight` for more information.
 
 
-Whoosh 2.0
+semlix 2.0
 ==========
 
 Improvements
 ------------
 
-* Whoosh is now compatible with Python 3 (tested with Python 3.2). Special
+* semlix is now compatible with Python 3 (tested with Python 3.2). Special
   thanks to Vinay Sajip who did the work, and also Jordan Sherer who helped
   fix later issues.
 
@@ -204,7 +204,7 @@ Improvements
 
   For example, to sort by first name and then score::
 
-      from whoosh import sorting
+      from semlix import sorting
 
       mf = sorting.MultiFacet([sorting.FieldFacet("firstname"),
                                sorting.ScoreFacet()])
@@ -231,15 +231,15 @@ Improvements
   "spelling index".
 
   You can get suggestions for individual words using
-  :meth:`whoosh.searching.Searcher.suggest`::
+  :meth:`semlix.searching.Searcher.suggest`::
 
       suglist = searcher.suggest("content", "werd", limit=3)
 
-  Whoosh now includes convenience methods to spell-check and correct user
+  semlix now includes convenience methods to spell-check and correct user
   queries, with optional highlighting of corrections using the
-  ``whoosh.highlight`` module::
+  ``semlix.highlight`` module::
 
-      from whoosh import highlight, qparser
+      from semlix import highlight, qparser
 
       # User query string
       qstring = request.get("q")
@@ -268,20 +268,20 @@ Improvements
 
   See :doc:`/spelling` for more information.
 
-* :class:`whoosh.query.FuzzyTerm` now uses the new word graph feature as well
+* :class:`semlix.query.FuzzyTerm` now uses the new word graph feature as well
   and so is much faster.
 
 * You can now set a boost factor for individual documents as you index them,
   to increase the score of terms in those documents in searches. See the
-  documentation for the :meth:`~whoosh.writing.IndexWriter.add_document` for
+  documentation for the :meth:`~semlix.writing.IndexWriter.add_document` for
   more information.
 
 * Added built-in recording of which terms matched in which documents. Use the
-  ``terms=True`` argument to :meth:`whoosh.searching.Searcher.search` and use
-  :meth:`whoosh.searching.Hit.matched_terms` and
-  :meth:`whoosh.searching.Hit.contains_term` to check matched terms.
+  ``terms=True`` argument to :meth:`semlix.searching.Searcher.search` and use
+  :meth:`semlix.searching.Hit.matched_terms` and
+  :meth:`semlix.searching.Hit.contains_term` to check matched terms.
 
-* Whoosh now supports whole-term quality optimizations, so for example if the
+* semlix now supports whole-term quality optimizations, so for example if the
   system knows that a UnionMatcher cannot possibly contribute to the "top N"
   results unless both sub-matchers match, it will replace the UnionMatcher with
   an IntersectionMatcher which is faster to compute. The performance improvement
@@ -298,7 +298,7 @@ Improvements
 * the BOOLEAN field type now supports field boosts.
 
 * Re-architected the query parser to make the code easier to understand. Custom
-  parser plugins from previous versions will probably break in Whoosh 2.0.
+  parser plugins from previous versions will probably break in semlix 2.0.
 
 * Various bug-fixes and performance improvements.
 
@@ -311,8 +311,8 @@ Compatibility
 -------------
 
 * The term quality optimizations required changes to the on-disk formats.
-  Whoosh 2.0 if backwards-compatible with the old format. As you rewrite an
-  index using Whoosh 2.0, by default it will use the new formats for new
+  semlix 2.0 if backwards-compatible with the old format. As you rewrite an
+  index using semlix 2.0, by default it will use the new formats for new
   segments, making the index incompatible with older versions.
 
   To upgrade an existing index to use the new formats immediately, use
@@ -325,9 +325,9 @@ Compatibility
   release when it will be replaced by a more robust and useful feature.
 
 * Reader iteration methods (``__iter__``, ``iter_from``, ``iter_field``, etc.)
-  now yield :class:`whoosh.reading.TermInfo` objects.
+  now yield :class:`semlix.reading.TermInfo` objects.
 
-* The arguments to :class:`whoosh.query.FuzzyTerm` changed.
+* The arguments to :class:`semlix.query.FuzzyTerm` changed.
 
 
 

@@ -2,7 +2,7 @@
 ``analysis`` module
 ===================
 
-.. automodule:: whoosh.analysis
+.. automodule:: semlix.analysis
 
 Analyzers
 =========

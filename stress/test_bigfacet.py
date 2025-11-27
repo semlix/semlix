@@ -1,8 +1,8 @@
 from __future__ import with_statement
 import os.path, random, string
 
-from whoosh import fields, formats, index, query, sorting
-from whoosh.util import now
+from semlix import fields, formats, index, query, sorting
+from semlix.util import now
 
 
 tagcount = 100

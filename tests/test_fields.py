@@ -3,11 +3,11 @@ from datetime import datetime, timedelta
 
 import pytest
 
-from whoosh import fields, qparser, query
-from whoosh.compat import u, b, xrange
-from whoosh.filedb.filestore import RamStorage
-from whoosh.util import times
-from whoosh.util.testing import TempIndex
+from semlix import fields, qparser, query
+from semlix.compat import u, b, xrange
+from semlix.filedb.filestore import RamStorage
+from semlix.util import times
+from semlix.util.testing import TempIndex
 
 
 def test_schema_eq():
@@ -604,7 +604,7 @@ def test_missing_field():
 
 
 def test_token_boost():
-    from whoosh.analysis import RegexTokenizer, DoubleMetaphoneFilter
+    from semlix.analysis import RegexTokenizer, DoubleMetaphoneFilter
     ana = RegexTokenizer() | DoubleMetaphoneFilter()
     field = fields.TEXT(analyzer=ana, phrase=False)
     results = sorted(field.index(u("spruce view")))
@@ -625,9 +625,9 @@ def test_pickle_idlist():
 
 
 def test_pickle_schema():
-    from whoosh import analysis
-    from whoosh.support.charset import accent_map
-    from whoosh.compat import dumps
+    from semlix import analysis
+    from semlix.support.charset import accent_map
+    from semlix.compat import dumps
 
     freetext_analyzer = (
         analysis.StemmingAnalyzer() |

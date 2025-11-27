@@ -2,7 +2,7 @@
 ``support.levenshtein`` module
 ==============================
 
-.. automodule:: whoosh.support.levenshtein
+.. automodule:: semlix.support.levenshtein
 
 .. autofunction:: relative
 

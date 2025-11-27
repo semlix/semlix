@@ -3,34 +3,34 @@ import copy
 
 import pytest
 
-from whoosh import fields, qparser, query
-from whoosh.compat import b, u
-from whoosh.filedb.filestore import RamStorage
-from whoosh.qparser import QueryParser
-from whoosh.query import And
-from whoosh.query import AndMaybe
-from whoosh.query import ConstantScoreQuery
-from whoosh.query import DateRange
-from whoosh.query import DisjunctionMax
-from whoosh.query import Every
-from whoosh.query import FuzzyTerm
-from whoosh.query import Not
-from whoosh.query import NullQuery
-from whoosh.query import NumericRange
-from whoosh.query import Or
-from whoosh.query import Phrase
-from whoosh.query import Prefix
-from whoosh.query import Require
-from whoosh.query import Term
-from whoosh.query import TermRange
-from whoosh.query import Variations
-from whoosh.query import Wildcard
-from whoosh.query.spans import SpanContains
-from whoosh.query.spans import SpanFirst
-from whoosh.query.spans import SpanNear
-from whoosh.query.spans import SpanNot
-from whoosh.query.spans import SpanOr
-from whoosh.util.testing import TempIndex
+from semlix import fields, qparser, query
+from semlix.compat import b, u
+from semlix.filedb.filestore import RamStorage
+from semlix.qparser import QueryParser
+from semlix.query import And
+from semlix.query import AndMaybe
+from semlix.query import ConstantScoreQuery
+from semlix.query import DateRange
+from semlix.query import DisjunctionMax
+from semlix.query import Every
+from semlix.query import FuzzyTerm
+from semlix.query import Not
+from semlix.query import NullQuery
+from semlix.query import NumericRange
+from semlix.query import Or
+from semlix.query import Phrase
+from semlix.query import Prefix
+from semlix.query import Require
+from semlix.query import Term
+from semlix.query import TermRange
+from semlix.query import Variations
+from semlix.query import Wildcard
+from semlix.query.spans import SpanContains
+from semlix.query.spans import SpanFirst
+from semlix.query.spans import SpanNear
+from semlix.query.spans import SpanNot
+from semlix.query.spans import SpanOr
+from semlix.util.testing import TempIndex
 
 
 def test_all_terms():

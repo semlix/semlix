@@ -1,8 +1,8 @@
 import gzip, os.path
 
-from whoosh import analysis, fields, index, qparser, query
-from whoosh.support.bench import Bench, Spec
-from whoosh.util import now
+from semlix import analysis, fields, index, qparser, query
+from semlix.support.bench import Bench, Spec
+from semlix.util import now
 
 
 class Reuters(Spec):
@@ -11,7 +11,7 @@ class Reuters(Spec):
     main_field = "text"
     headline_text = "headline"
 
-    def whoosh_schema(self):
+    def semlix_schema(self):
         #ana = analysis.StemmingAnalyzer()
         ana = analysis.StandardAnalyzer()
         schema = fields.Schema(id=fields.ID(stored=True),

@@ -2,9 +2,9 @@
 ``query`` module
 ================
 
-.. automodule:: whoosh.query
+.. automodule:: semlix.query
 
-See also :mod:`whoosh.qparser` which contains code for parsing user queries
+See also :mod:`semlix.qparser` which contains code for parsing user queries
 into query objects.
 
 Base classes

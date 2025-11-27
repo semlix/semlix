@@ -1,10 +1,10 @@
 # encoding: utf-8
 from __future__ import with_statement
 
-from whoosh import fields, formats
-from whoosh.compat import u
-from whoosh.filedb.filestore import RamStorage
-from whoosh.util.testing import TempIndex
+from semlix import fields, formats
+from semlix.compat import u
+from semlix.filedb.filestore import RamStorage
+from semlix.util.testing import TempIndex
 
 
 def test_single_term():
@@ -62,7 +62,7 @@ def test_vector_merge():
 
 
 def test_vector_unicode():
-    from whoosh import analysis
+    from semlix import analysis
 
     cf = fields.TEXT(analyzer=analysis.RegexTokenizer(), vector=True)
     schema = fields.Schema(id=fields.NUMERIC, text=cf)

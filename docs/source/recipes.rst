@@ -1,5 +1,5 @@
 ==============
-Whoosh recipes
+semlix recipes
 ==============
 
 General
@@ -18,7 +18,7 @@ Analysis
 Eliminate words shorter/longer than N
 -------------------------------------
 
-Use a :class:`~whoosh.analysis.StopFilter` and the ``minsize`` and ``maxsize``
+Use a :class:`~semlix.analysis.StopFilter` and the ``minsize`` and ``maxsize``
 keyword arguments. If you just want to filter based on size and not common
 words, set the ``stoplist`` to ``None``::
 
@@ -61,7 +61,7 @@ Find every document
 iTunes-style search-as-you-type
 -------------------------------
 
-Use the :class:`whoosh.analysis.NgramWordAnalyzer` as the analyzer for the
+Use the :class:`semlix.analysis.NgramWordAnalyzer` as the analyzer for the
 field you want to search as the user types. You can save space in the index by
 turning off positions in the field using ``phrase=False``, since phrase
 searching on N-gram fields usually doesn't make much sense::
@@ -71,7 +71,7 @@ searching on N-gram fields usually doesn't make much sense::
     title_field = fields.TEXT(analyzer=analyzer, phrase=False)
     schema = fields.Schema(title=title_field)
 
-See the documentation for the :class:`~whoosh.analysis.NgramWordAnalyzer` class
+See the documentation for the :class:`~semlix.analysis.NgramWordAnalyzer` class
 for information on the available options.
 
 
@@ -103,7 +103,7 @@ The following scoring function uses the position of the first occurance of a
 term in each document to calculate the score, so documents with the given term
 earlier in the document will score higher::
 
-    from whoosh import scoring
+    from semlix import scoring
 
     def pos_score_fn(searcher, fieldname, text, matcher):
         poses = matcher.value_as("positions")
@@ -133,7 +133,7 @@ known::
 Usually, however, the exact number of documents that match the query is not
 known, because the searcher can skip over blocks of documents it knows won't
 show up in the "top N" list. If you call ``len(results)`` on a query where the
-exact length is unknown, Whoosh will run an unscored version of the original
+exact length is unknown, semlix will run an unscored version of the original
 query to get the exact number. This is faster than the scored search, but may
 still be noticeably slow on very large indexes or complex queries.
 

@@ -3,10 +3,10 @@ import struct
 
 from nose.tools import assert_equal  #@UnresolvedImport
 
-from whoosh import formats
-from whoosh.compat import xrange
-from whoosh.filedb.filepostings import FilePostingReader, FilePostingWriter
-from whoosh.util.testing import TempStorage
+from semlix import formats
+from semlix.compat import xrange
+from semlix.filedb.filepostings import FilePostingReader, FilePostingWriter
+from semlix.util.testing import TempStorage
 
 
 def test_huge_postfile():

@@ -2,15 +2,15 @@ from __future__ import with_statement
 import inspect
 from datetime import datetime
 
-from whoosh import analysis, fields, formats, qparser, query
-from whoosh.compat import u, text_type, xrange
-from whoosh.filedb.filestore import RamStorage
-from whoosh.qparser import dateparse, default, plugins, syntax
-from whoosh.util.times import adatetime
+from semlix import analysis, fields, formats, qparser, query
+from semlix.compat import u, text_type, xrange
+from semlix.filedb.filestore import RamStorage
+from semlix.qparser import dateparse, default, plugins, syntax
+from semlix.util.times import adatetime
 
 
 def _plugin_classes(ignore):
-    # Get all the subclasses of Plugin in whoosh.qparser.plugins
+    # Get all the subclasses of Plugin in semlix.qparser.plugins
     return [c for _, c in inspect.getmembers(plugins, inspect.isclass)
             if plugins.Plugin in c.__bases__ and c not in ignore]
 
@@ -461,7 +461,7 @@ def test_fuzzy_plugin():
 
 
 def test_fuzzy_prefix():
-    from whoosh import scoring
+    from semlix import scoring
 
     schema = fields.Schema(title=fields.TEXT(stored=True),
                            content=fields.TEXT(spelling=True))
@@ -484,7 +484,7 @@ def test_fuzzy_prefix():
         w.add_document(title=u("Fifth"),
                        content=u("The fire is beautiful"))
 
-    from whoosh.qparser import QueryParser, FuzzyTermPlugin
+    from semlix.qparser import QueryParser, FuzzyTermPlugin
     parser = QueryParser("content", ix.schema)
     parser.add_plugin(FuzzyTermPlugin())
     q = parser.parse("first~2/3 OR zeroth", debug=False)
@@ -564,7 +564,7 @@ def test_function_plugin():
 
 
 def test_function_first():
-    from whoosh.query.spans import SpanFirst
+    from semlix.query.spans import SpanFirst
 
     def make_first(qs):
         return SpanFirst(qs[0])
@@ -636,7 +636,7 @@ def test_sequence_complex():
         w.add_document(title=u"Second document", path=u"/b",
                        content=(u"In truth, he said, I would like to combine "
                                 u"logical operators with proximity-based "
-                                u"search in Whoosh!"))
+                                u"search in semlix!"))
 
     with ix.searcher() as s:
         qp = qparser.QueryParser("content", ix.schema)

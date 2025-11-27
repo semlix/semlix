@@ -2,7 +2,7 @@
 ``fields`` module
 =================
 
-.. automodule:: whoosh.fields
+.. automodule:: semlix.fields
 
 Schema class
 ============

@@ -4,12 +4,12 @@ from array import array
 
 import pytest
 
-from whoosh import analysis, fields, formats, query
-from whoosh.compat import u, b, text_type
-from whoosh.compat import array_tobytes, xrange
-from whoosh.codec import default_codec
-from whoosh.filedb.filestore import RamStorage
-from whoosh.util.testing import TempStorage
+from semlix import analysis, fields, formats, query
+from semlix.compat import u, b, text_type
+from semlix.compat import array_tobytes, xrange
+from semlix.codec import default_codec
+from semlix.filedb.filestore import RamStorage
+from semlix.util.testing import TempStorage
 
 
 def _make_codec(**kwargs):
@@ -451,7 +451,7 @@ def test_skip():
 #
 #
 # def test_special_spelled_field():
-#     from whoosh.analysis import StemmingAnalyzer
+#     from semlix.analysis import StemmingAnalyzer
 #
 #     field = fields.TEXT(analyzer=StemmingAnalyzer(), spelling=True)
 #     st, codec, seg = _make_codec()
@@ -478,8 +478,8 @@ def test_skip():
 
 def test_plaintext_codec():
     pytest.importorskip("ast")
-    from whoosh.codec.plaintext import PlainTextCodec
-    from whoosh.codec.whoosh3 import W3Codec
+    from semlix.codec.plaintext import PlainTextCodec
+    from semlix.codec.whoosh3 import W3Codec
 
     ana = analysis.StemmingAnalyzer()
     schema = fields.Schema(a=fields.TEXT(vector=True, sortable=True),
@@ -550,8 +550,8 @@ def test_plaintext_codec():
 
 
 def test_memory_codec():
-    from whoosh.codec import memory
-    from whoosh.searching import Searcher
+    from semlix.codec import memory
+    from semlix.searching import Searcher
 
     ana = analysis.StemmingAnalyzer()
     schema = fields.Schema(a=fields.TEXT(vector=True),
@@ -599,7 +599,7 @@ def test_memory_codec():
 
 
 def test_memory_multiwrite():
-    from whoosh.codec import memory
+    from semlix.codec import memory
 
     domain = ["alfa bravo charlie delta",
               "bravo charlie delta echo",

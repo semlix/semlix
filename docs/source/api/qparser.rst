@@ -2,7 +2,7 @@
 ``qparser`` module
 ==================
 
-.. automodule:: whoosh.qparser
+.. automodule:: semlix.qparser
 
 Parser object
 =============

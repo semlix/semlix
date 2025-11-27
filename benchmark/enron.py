@@ -9,10 +9,10 @@ try:
 except ImportError:
     pass
 
-from whoosh import analysis, fields
-from whoosh.compat import urlretrieve, next
-from whoosh.support.bench import Bench, Spec
-from whoosh.util import now
+from semlix import analysis, fields
+from semlix.compat import urlretrieve, next
+from semlix.support.bench import Bench, Spec
+from semlix.util import now
 
 
 # Benchmark class
@@ -119,7 +119,7 @@ class Enron(Spec):
             pass
         f.close()
 
-    def whoosh_schema(self):
+    def semlix_schema(self):
         ana = analysis.StemmingAnalyzer(maxsize=40, cachesize=None)
         storebody = self.options.storebody
         schema = fields.Schema(body=fields.TEXT(analyzer=ana, stored=storebody),
@@ -156,13 +156,13 @@ class Enron(Spec):
         for name in ("to", "subject", "cc", "bcc", "body"):
             cat[name] = indexes.TextIndex(field_name=name)
 
-    def process_document_whoosh(self, d):
+    def process_document_semlix(self, d):
         d["filepos"] = self.filepos
         if self.options.storebody:
             mf = self.main_field
             d["_stored_%s" % mf] = compress(d[mf], 9)
 
-    def process_result_whoosh(self, d):
+    def process_result_semlix(self, d):
         mf = self.main_field
         if mf in d:
             d.fields()[mf] = decompress(d[mf])

@@ -1,11 +1,12 @@
 ==============================
-Whoosh |release| documentation
+semlix |release| documentation
 ==============================
 
-Whoosh was created by `Matt Chaput <mailto:matt@whoosh.ca>`_.
-You can view outstanding issues on the
-`Whoosh Bitbucket page <http://bitbucket.org/mchaput/whoosh>`_
-and get help on the `Whoosh mailing list <http://groups.google.com/group/whoosh>`_.
+semlix is based on Whoosh, which was created by `Matt Chaput <mailto:matt@whoosh.ca>`_.
+semlix extends semlix with semantic search capabilities while maintaining full backward compatibility.
+
+You can view the project and report issues on the
+`semlix GitHub page <https://github.com/semlix/semlix>`_.
 
 
 Contents
@@ -21,6 +22,7 @@ Contents
     schema
     indexing
     searching
+    semantic
     parsing
     querylang
     dates

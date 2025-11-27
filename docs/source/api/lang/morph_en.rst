@@ -2,6 +2,6 @@
 ``lang.morph_en`` module
 ========================
 
-.. automodule:: whoosh.lang.morph_en
+.. automodule:: semlix.lang.morph_en
 
 .. autofunction:: variations

@@ -2,7 +2,7 @@
 ``writing`` module
 ==================
 
-.. automodule:: whoosh.writing
+.. automodule:: semlix.writing
 
 
 Writer

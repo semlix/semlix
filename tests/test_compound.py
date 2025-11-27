@@ -1,9 +1,9 @@
 from __future__ import with_statement
 
-from whoosh.compat import b
-from whoosh.filedb.compound import CompoundStorage
-from whoosh.filedb.filestore import RamStorage
-from whoosh.util.testing import TempStorage
+from semlix.compat import b
+from semlix.filedb.compound import CompoundStorage
+from semlix.filedb.filestore import RamStorage
+from semlix.util.testing import TempStorage
 
 
 def _test_simple_compound(st):

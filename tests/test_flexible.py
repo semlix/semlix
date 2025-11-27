@@ -1,8 +1,8 @@
 from __future__ import with_statement
 
-from whoosh import fields
-from whoosh.compat import u, b
-from whoosh.util.testing import TempIndex
+from semlix import fields
+from semlix.compat import u, b
+from semlix.util.testing import TempIndex
 
 
 def test_addfield():

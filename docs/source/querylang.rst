@@ -11,12 +11,12 @@ A query consists of *terms* and *operators*. There are two types of terms: singl
 terms and *phrases*. Multiple terms can be combined with operators such as
 *AND* and *OR*.
 
-Whoosh supports indexing text in different *fields*. You must specify the
-*default field* when you create the :class:`whoosh.qparser.QueryParser` object.
+semlix supports indexing text in different *fields*. You must specify the
+*default field* when you create the :class:`semlix.qparser.QueryParser` object.
 This is the field in which any terms the user does not explicitly specify a field
 for will be searched.
 
-Whoosh's query parser is capable of parsing different and/or additional syntax
+semlix's query parser is capable of parsing different and/or additional syntax
 through the use of plug-ins. See :doc:`parsing`.
 
 
@@ -37,9 +37,9 @@ that field.
 Normally when you specify a phrase, the maximum difference in position between
 each word in the phrase is 1 (that is, the words must be right next to each
 other in the document). For example, the following matches if a document has
-``library`` within 5 words after ``whoosh``::
+``library`` within 5 words after ``semlix``::
 
-    "whoosh library"~5
+    "semlix library"~5
 
 
 Boolean operators
