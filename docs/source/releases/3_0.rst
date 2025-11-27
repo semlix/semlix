@@ -179,7 +179,7 @@ Project Information
 -------------------
 
 * Repository moved to: https://github.com/semlix/semlix
-* Maintained by: Alberto Fernandez (albertof@barrahome.org)
+* Maintained by: Alberto Ferrer (albertof@barrahome.org)
 * Based on: Whoosh (created by Matt Chaput)
 * License: Simplified BSD (two-clause) license
 

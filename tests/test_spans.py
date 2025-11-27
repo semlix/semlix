@@ -207,7 +207,7 @@ def test_span_near_tree():
     ix = st.create_index(schema)
     w = ix.writer()
     w.add_document(text=u("The Lucene library is by Doug Cutting and semlix " +
-                          "was made by Alberto Fernandez"))
+                          "was made by Alberto Ferrer"))
     w.commit()
 
     nq1 = spans.SpanNear(Term("text", "lucene"), Term("text", "doug"), slop=5)

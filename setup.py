@@ -32,7 +32,7 @@ if __name__ == "__main__":
         package_dir={'': 'src'},
         packages=find_packages("src"),
 
-        author="Alberto Fernandez",
+        author="Alberto Ferrer",
         author_email="albertof@barrahome.org",
 
         description="Fast, pure-Python full text indexing, search, and spell checking library with semantic search capabilities.",

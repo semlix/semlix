@@ -33,7 +33,7 @@ master_doc = 'index'
 
 # General information about the project.
 project = u'semlix'
-copyright = u'2007-2012 Matt Chaput, 2024 Alberto Fernandez'
+copyright = u'2007-2012 Matt Chaput, 2024 Alberto Ferrer'
 
 # The version info for the project you're documenting, acts as replacement for
 # |version| and |release|, also used in various other places throughout the
@@ -170,7 +170,7 @@ htmlhelp_basename = 'semlixdoc'
 # (source start file, target name, title, author, documentclass [howto/manual]).
 latex_documents = [
   ('index', 'semlix.tex', u'semlix Documentation',
-   u'Alberto Fernandez', 'manual'),
+   u'Alberto Ferrer', 'manual'),
 ]
 
 # The name of an image file (relative to this directory) to place at the top of
