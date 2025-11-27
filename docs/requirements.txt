@@ -1,0 +1,6 @@
+# Requirements for building semlix documentation
+# These are the dependencies needed to build the Sphinx documentation
+
+sphinx>=4.0.0
+sphinx-rtd-theme>=1.0.0
+
