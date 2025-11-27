@@ -59,6 +59,8 @@ clause" or "FreeBSD") license. See LICENSE.txt for information.
 Installing semlix
 =================
 
+Install from PyPI: https://pypi.org/project/semlix/
+
 Basic installation::
 
     pip install semlix
@@ -125,5 +127,7 @@ See the [semantic search documentation](docs/source/semantic.rst) for more detai
 Project
 =======
 
-semlix is maintained at https://github.com/semlix/semlix
+* **GitHub**: https://github.com/semlix/semlix
+* **PyPI**: https://pypi.org/project/semlix/
+* **Documentation**: https://semlix.readthedocs.io/en/latest/
 
