@@ -1,0 +1,286 @@
+========================
+semlix 3.0 release notes
+========================
+
+semlix 3.0.0
+============
+
+This is a major release that rebrands the project from Whoosh to semlix and adds
+powerful semantic search capabilities while maintaining full backward compatibility
+with existing Whoosh code.
+
+Major Changes
+-------------
+
+* **Project Rebrand**: Complete rebrand from Whoosh to semlix. The name "semlix"
+  stands for **Sem**antic + **L**exical + **I**ndex, reflecting the library's
+  hybrid search capabilities.
+
+* **Semantic Search**: Added comprehensive semantic search functionality that
+  combines traditional lexical (keyword-based) search with modern vector-based
+  semantic similarity search. This allows semlix to understand meaning and context
+  beyond simple keyword matching.
+
+* **Hybrid Search**: New hybrid search system that intelligently combines lexical
+  and semantic search results using multiple fusion algorithms (RRF, Linear, DBSF).
+
+* **Backward Compatibility**: All existing Whoosh code continues to work without
+  modification. The rebrand is transparent to existing users.
+
+New Features
+------------
+
+Semantic Search Components
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+* :class:`semlix.semantic.HybridIndexWriter`: Index writer that maintains both
+  lexical (semlix) and semantic (vector) indexes in sync.
+
+* :class:`semlix.semantic.HybridSearcher`: Searcher that performs hybrid search
+  combining lexical and semantic results.
+
+* :class:`semlix.semantic.stores.VectorStore`: Base interface for vector storage.
+  Implementations include:
+  
+  * :class:`semlix.semantic.stores.NumpyVectorStore`: Pure Python implementation
+    using NumPy arrays.
+  
+  * :class:`semlix.semantic.stores.FaissVectorStore`: High-performance implementation
+    using Facebook's FAISS library for large-scale deployments.
+
+Embedding Providers
+~~~~~~~~~~~~~~~~~~~
+
+* :class:`semlix.semantic.SentenceTransformerProvider`: Uses sentence-transformers
+  library for local embedding generation.
+
+* :class:`semlix.semantic.OpenAIProvider`: Integration with OpenAI's embedding API.
+
+* :class:`semlix.semantic.CohereProvider`: Integration with Cohere's embedding API.
+
+* :class:`semlix.semantic.HuggingFaceInferenceProvider`: Uses Hugging Face Inference
+  API for embeddings.
+
+Result Fusion
+~~~~~~~~~~~~~
+
+* **RRF (Reciprocal Rank Fusion)**: Default fusion method that combines results
+  from multiple sources using reciprocal ranking.
+
+* **Linear Fusion**: Weighted linear combination of scores.
+
+* **DBSF (Distributed Borda Score Fusion)**: Advanced fusion algorithm for
+  distributed search scenarios.
+
+API Changes
+-----------
+
+* The ``whoosh_index`` parameter in semantic search classes has been renamed to
+  ``index`` for consistency and clarity:
+  
+  * :class:`semlix.semantic.HybridIndexWriter`: ``index`` parameter instead of
+    ``whoosh_index``
+  
+  * :class:`semlix.semantic.HybridSearcher`: ``index`` parameter instead of
+    ``whoosh_index``
+  
+  * :func:`semlix.semantic.build_vector_store_from_index`: ``index`` parameter
+    instead of ``whoosh_index``
+
+* Internal variable names updated for consistency:
+  
+  * ``_whoosh_writer`` → ``_writer`` in :class:`semlix.semantic.HybridIndexWriter`
+  
+  * ``_WhooshBase`` → ``_SemlixBase`` in :class:`semlix.compat` (internal)
+
+* Default file extension for temporary indexes changed from ``.whoosh`` to
+  ``.semlix`` in :class:`semlix.util.testing.TempDir`.
+
+* Google App Engine namespace changed from ``"whooshlocks"`` to ``"semlixlocks"``
+  in :class:`semlix.filedb.gae.MemcacheLock`.
+
+Package Structure
+-----------------
+
+* Package renamed from ``whoosh`` to ``semlix``:
+  
+  * All imports now use ``semlix`` instead of ``whoosh``
+  
+  * Source code moved from ``src/whoosh/`` to ``src/semlix/``
+  
+  * All module paths updated accordingly
+
+* New semantic search modules:
+  
+  * ``semlix.semantic``: Core semantic search functionality
+  
+  * ``semlix.semantic.stores``: Vector store implementations
+  
+  * ``semlix.semantic.embeddings``: Embedding provider implementations
+
+Documentation
+-------------
+
+* Complete documentation update reflecting the rebrand to semlix.
+
+* New semantic search documentation in :doc:`/semantic` covering:
+  
+  * Getting started with semantic search
+  
+  * Hybrid indexing and searching
+  
+  * Embedding providers
+  
+  * Vector stores
+  
+  * Result fusion algorithms
+  
+  * Migration guide
+
+* All code examples updated to use ``semlix`` imports and API.
+
+* Historical references to Whoosh maintained where appropriate to acknowledge
+  the project's origins.
+
+Installation
+------------
+
+* Package name changed from ``whoosh`` to ``semlix`` on PyPI.
+
+* Basic installation::
+  
+    pip install semlix
+
+* With semantic search capabilities::
+  
+    pip install semlix[semantic]
+
+* Full semantic search with all providers and FAISS support::
+  
+    pip install semlix[semantic-full]
+
+Compatibility
+-------------
+
+* **Fully backward compatible**: All existing Whoosh code works without
+  modification. Simply change imports from ``whoosh`` to ``semlix``.
+
+* Index format compatibility: semlix 3.0 can read and write indexes created by
+  Whoosh 2.x. The index format remains compatible.
+
+* API compatibility: All public APIs remain the same, with the exception of
+  semantic search classes where ``whoosh_index`` parameter was renamed to
+  ``index``.
+
+* Format names: Legacy format names (``whoosh3``, ``whoosh2``) are maintained
+  for compatibility with existing indexes.
+
+Project Information
+-------------------
+
+* Repository moved to: https://github.com/semlix/semlix
+
+* Maintained by: Alberto Fernandez (albertof@barrahome.org)
+
+* Based on: Whoosh (created by Matt Chaput)
+
+* License: Simplified BSD (two-clause) license
+
+Migration Guide
+--------------
+
+For existing Whoosh users:
+
+1. **Update imports**: Change all ``from whoosh`` and ``import whoosh`` to
+   ``from semlix`` and ``import semlix``.
+
+2. **Update package installation**: Uninstall ``whoosh`` and install ``semlix``::
+   
+   pip uninstall whoosh
+   pip install semlix
+
+3. **No code changes required**: All existing code continues to work. Your
+   indexes, schemas, and queries work exactly as before.
+
+4. **Optional: Add semantic search**: To add semantic search capabilities,
+   see the :doc:`/semantic` documentation.
+
+Example migration::
+
+    # Before (Whoosh)
+    from whoosh.index import create_in
+    from whoosh.fields import Schema, TEXT, ID
+    
+    # After (semlix)
+    from semlix.index import create_in
+    from semlix.fields import Schema, TEXT, ID
+    
+    # Everything else works the same!
+
+Internal Changes
+---------------
+
+* Updated all internal references from "Whoosh" to "semlix" in:
+  
+  * Docstrings and comments
+  
+  * Error messages
+  
+  * Logging namespaces
+  
+  * Test data and examples
+
+* Maintained historical references where appropriate (e.g., URLs, email addresses
+  in examples, format names).
+
+* Updated project metadata in ``setup.py`` and configuration files.
+
+Dependencies
+------------
+
+* **Core**: No new dependencies. semlix remains a pure Python library with
+  minimal dependencies.
+
+* **Semantic search**: Optional dependencies for semantic search features:
+  
+  * ``numpy``: Required for semantic search (included in ``semlix[semantic]``)
+  
+  * ``sentence-transformers``: For local embedding generation
+  
+  * ``openai``: For OpenAI embeddings
+  
+  * ``cohere``: For Cohere embeddings
+  
+  * ``huggingface_hub``: For Hugging Face Inference API
+  
+  * ``faiss-cpu`` or ``faiss-gpu``: For high-performance vector storage
+
+Performance
+-----------
+
+* Semantic search performance depends on the chosen vector store:
+  
+  * ``NumpyVectorStore``: Good for small to medium indexes (< 1M documents)
+  
+  * ``FaissVectorStore``: Optimized for large-scale indexes with millions of
+    documents
+
+* Hybrid search adds minimal overhead to lexical search while providing
+  significant improvements in search quality for conceptual queries.
+
+* Embedding generation can be batched for efficiency using the ``batch_size``
+  parameter in :class:`semlix.semantic.HybridIndexWriter`.
+
+Future Plans
+------------
+
+* Continued development of semantic search features
+
+* Performance optimizations for large-scale deployments
+
+* Additional embedding provider integrations
+
+* Enhanced fusion algorithms
+
+* Improved documentation and examples
+
