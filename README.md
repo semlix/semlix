@@ -17,8 +17,8 @@ What does "semlix" mean?
 The name **semlix** stands for:
 
 * **Sem**antic - Understanding meaning and context beyond keywords
-* **L**exical - Traditional keyword matching (BM25/TF-IDF)
-* **I**ndex - Fast, efficient indexing and retrieval
+* **Lex**ical - Traditional keyword matching (BM25/TF-IDF)
+* **Ind**ex - Fast, efficient indexing and retrieval
 
 semlix combines all three: it indexes your documents, searches them using both
 lexical (keyword) and semantic (meaning-based) methods, then intelligently

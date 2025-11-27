@@ -37,6 +37,7 @@ if __name__ == "__main__":
 
         description="Fast, pure-Python full text indexing, search, and spell checking library with semantic search capabilities.",
         long_description=open("README.md").read(),
+        long_description_content_type="text/markdown",
 
         license="Two-clause BSD license",
         keywords="index search text spell semantic",
