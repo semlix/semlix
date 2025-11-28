@@ -13,8 +13,8 @@ Major Changes
 -------------
 
 * **Project Rebrand**: Complete rebrand from Whoosh to semlix. The name "semlix"
-  stands for **Sem**antic + **L**exical + **I**ndex, reflecting the library's
-  hybrid search capabilities.
+  stands for Semantic + Lexical + Index (highlighting the **S**, **L**, and **I**
+  letters), reflecting the library's hybrid search capabilities.
 
 * **Semantic Search**: Added comprehensive semantic search functionality that
   combines traditional lexical (keyword-based) search with modern vector-based
@@ -184,7 +184,7 @@ Project Information
 * License: Simplified BSD (two-clause) license
 
 Migration Guide
---------------
+---------------
 
 For existing Whoosh users:
 
@@ -192,9 +192,9 @@ For existing Whoosh users:
    ``from semlix`` and ``import semlix``.
 
 2. **Update package installation**: Uninstall ``whoosh`` and install ``semlix``::
-   
-   pip uninstall whoosh
-   pip install semlix
+
+    pip uninstall whoosh
+    pip install semlix
 
 3. **No code changes required**: All existing code continues to work. Your
    indexes, schemas, and queries work exactly as before.
@@ -215,7 +215,7 @@ Example migration::
     # Everything else works the same!
 
 Internal Changes
----------------
+----------------
 
 * Updated all internal references from "Whoosh" to "semlix" in:
   

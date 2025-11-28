@@ -1138,7 +1138,7 @@ class BufferedWriter(IndexWriter):
     documents are available for searching as soon as they are buffered in
     memory, before they are committed to disk.
 
-    .. tip::
+    .. note::
         By using a searcher from the shared writer, multiple *threads* can
         search the buffered documents. Of course, other *processes* will only
         see the documents that have been written to disk. If you want indexed

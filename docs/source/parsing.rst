@@ -49,7 +49,7 @@ To create a :class:`semlix.qparser.QueryParser` object, pass it the name of the
 
     parser = QueryParser("content", schema=myindex.schema)
 
-.. tip::
+.. note::
 
     You can instantiate a ``QueryParser`` object without specifying a schema,
     however the parser will not process the text of the user query. This is
