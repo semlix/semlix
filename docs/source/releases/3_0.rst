@@ -192,9 +192,9 @@ For existing Whoosh users:
    ``from semlix`` and ``import semlix``.
 
 2. **Update package installation**: Uninstall ``whoosh`` and install ``semlix``::
-
-    pip uninstall whoosh
-    pip install semlix
+   
+   pip uninstall whoosh
+   pip install semlix
 
 3. **No code changes required**: All existing code continues to work. Your
    indexes, schemas, and queries work exactly as before.

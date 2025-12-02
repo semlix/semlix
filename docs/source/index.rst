@@ -23,6 +23,9 @@ Contents
     indexing
     searching
     semantic
+    bm25
+    unified
+    migration
     parsing
     querylang
     dates
